@@ -4,3 +4,6 @@
 [submodule "usuarios-autenticacion-ms"]
 	path = usuarios-autenticacion-ms
 	url = https://github.com/D3vCor3Bits/Usuarios-Autenticacion-Microservice.git
+[submodule "descripciones-imagenes-ms"]
+	path = descripciones-imagenes-ms
+	url = https://github.com/D3vCor3Bits/Descripciones-Imagenes-Microservice.git
