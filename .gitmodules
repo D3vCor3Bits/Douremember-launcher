@@ -7,3 +7,6 @@
 [submodule "descripciones-imagenes-ms"]
 	path = descripciones-imagenes-ms
 	url = https://github.com/D3vCor3Bits/Descripciones-Imagenes-Microservice.git
+[submodule "alertas-reportes-ms"]
+	path = alertas-reportes-ms
+	url = https://github.com/D3vCor3Bits/Alertas-Reportes-Microservice.git
