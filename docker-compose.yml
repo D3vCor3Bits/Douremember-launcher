@@ -46,12 +46,11 @@ services:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - DATABASE_URL=${DATABASE_URL}
   
-#   alertas-reportes-ms:
-#     build: ./alertas-reportes-ms
-#     volumes:
-#       - ./alertas-reportes-ms/src:/usr/src/app/src
-#     command: npm run start:dev
-#     environment:
-#       - PORT=3003
-#       - DATABASE_URL=${DATABASE_URL}
-#       - NATS_SERVERS=nats://nats-server:4222
+  alertas-reportes-ms:
+    build: ./alertas-reportes-ms
+    volumes:
+      - ./alertas-reportes-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3003
+      - NATS_SERVERS=nats://nats-server:4222
