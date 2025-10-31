@@ -1,3 +1,6 @@
 [submodule "gateway"]
 	path = gateway
 	url = https://github.com/D3vCor3Bits/Gateway.git
+[submodule "usuarios-autenticacion-ms"]
+	path = usuarios-autenticacion-ms
+	url = https://github.com/D3vCor3Bits/Usuarios-Autenticacion-Microservice.git
