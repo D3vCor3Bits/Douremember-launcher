@@ -21,68 +21,37 @@ services:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222
 
-#   auth-ms:
-#     build: ./auth-ms
-#     volumes:
-#       - ./auth-ms/src:/usr/src/app/src
-#     command: npm run start:dev
-#     environment:
-#       - PORT=3004
-#       - NATS_SERVERS=nats://nats-server:4222
-#       - DATABASE_URL=${AUTH_DATABASE_URL}
-#       - JWT_SECRET=${JWT_SECRET}
+  usuarios-autenticacion-ms:
+    build: ./usuarios-autenticacion-ms
+    volumes:
+      - ./usuarios-autenticacion-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3001
+      - NATS_SERVERS=nats://nats-server:4222
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
 
-#   products-ms:
-#     build: ./products-ms
-#     volumes:
-#       - ./products-ms/src:/usr/src/app/src
-#     command: npm run start:dev
-#     environment:
-#       - PORT=3001
-#       - NATS_SERVERS=nats://nats-server:4222
-#       - DATABASE_URL=file:./dev.db
+  descripciones-imagenes-ms:
+    build: ./descripciones-imagenes-ms
+    volumes:
+      - ./descripciones-imagenes-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3002
+      - NATS_SERVERS=nats://nats-server:4222
+      - CLOUDINARY_NAME=${CLOUDINARY_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
   
-#   # Orders MS
-#   orders-ms:
-#     depends_on:
-#       - orders-db
-#     build: ./orders-ms
+#   alertas-reportes-ms:
+#     build: ./alertas-reportes-ms
 #     volumes:
-#       - ./orders-ms/src:/usr/src/app/src
+#       - ./alertas-reportes-ms/src:/usr/src/app/src
 #     command: npm run start:dev
 #     environment:
-#       - PORT=3002
-#       - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/ordersdb?schema=public
+#       - PORT=3003
+#       - DATABASE_URL=${DATABASE_URL}
 #       - NATS_SERVERS=nats://nats-server:4222
-
-
-#   # Orders DB
-#   orders-db:
-#     container_name: orders_database
-#     image: postgres:16.2
-#     restart: always
-#     volumes:
-#       - ./orders-ms/postgres:/var/lib/postgresql/data
-#     ports:
-#       - 5432:5432
-#     environment:
-#       - POSTGRES_USER=postgres
-#       - POSTGRES_PASSWORD=123456
-#       - POSTGRES_DB=ordersdb
-
-# #################
-#   payments-ms:
-#     container_name: payments-ms
-#     build: ./payments-ms
-#     volumes:
-#       - ./payments-ms/src:/usr/src/app/src
-#     command: npm run start:dev
-#     ports: 
-#       - ${PAYMENTS_MS_PORT}:${PAYMENTS_MS_PORT}
-#     environment:
-#       - PORT=${PAYMENTS_MS_PORT}
-#       - NATS_SERVERS=nats://nats-server:4222
-#       - STRIPE_SECRET=${STRIPE_SECRET}
-#       - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
-#       - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
-#       - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
