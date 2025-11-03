@@ -10,3 +10,6 @@
 [submodule "alertas-reportes-ms"]
 	path = alertas-reportes-ms
 	url = https://github.com/D3vCor3Bits/Alertas-Reportes-Microservice.git
+[submodule "Gateway"]
+	path = Gateway
+	url = https://github.com/D3vCor3Bits/Gateway.git
