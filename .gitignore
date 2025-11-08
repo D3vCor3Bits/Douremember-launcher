@@ -6,6 +6,7 @@
 .env.local
 
 node_modules/
- 
+docs/
+
 *.md
 !**/README.md
