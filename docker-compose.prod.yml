@@ -1,0 +1,59 @@
+version: '3'
+
+
+services:
+
+  
+  nats-server:
+    image: nats:latest
+    
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: dockerfile.prod
+    image: gateway-prod
+    ports:
+      - ${CLIENT_GATEWAY_PORT}:${CLIENT_GATEWAY_PORT}
+    environment:
+      - PORT=${CLIENT_GATEWAY_PORT}
+      - NATS_SERVERS=nats://nats-server:4222
+
+  usuarios-autenticacion-ms:
+    build:
+      context: ./usuarios-autenticacion-ms
+      dockerfile: dockerfile.prod
+    image: usuarios-autenticacion-ms
+    environment:
+      - PORT=3001
+      - NATS_SERVERS=nats://nats-server:4222
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+
+  descripciones-imagenes-ms:
+    build: 
+      context: ./descripciones-imagenes-ms
+      dockerfile: dockerfile.prod
+    image: descripciones-imagenes-ms
+    environment:
+      - PORT=3002
+      - NATS_SERVERS=nats://nats-server:4222
+      - CLOUDINARY_NAME=${CLOUDINARY_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+  
+  alertas-reportes-ms:
+    build:
+      context: ./alertas-reportes-ms
+      dockerfile: dockerfile.prod
+    image: alertas-reportes-ms
+    environment:
+      - PORT=3003
+      - NATS_SERVERS=nats://nats-server:4222
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_FROM_ADDRESS=${EMAIL_FROM_ADDRESS}
+
+  
