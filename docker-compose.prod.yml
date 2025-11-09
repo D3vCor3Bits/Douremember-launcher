@@ -12,7 +12,7 @@ services:
     build:
       context: ./gateway
       dockerfile: dockerfile.prod
-    image: gateway-prod
+    image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/gateway
     ports:
       - ${CLIENT_GATEWAY_PORT}:${CLIENT_GATEWAY_PORT}
     environment:
@@ -23,7 +23,7 @@ services:
     build:
       context: ./usuarios-autenticacion-ms
       dockerfile: dockerfile.prod
-    image: usuarios-autenticacion-ms
+    image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/usuarios-autenticacion-ms
     environment:
       - PORT=3001
       - NATS_SERVERS=nats://nats-server:4222
@@ -34,7 +34,7 @@ services:
     build: 
       context: ./descripciones-imagenes-ms
       dockerfile: dockerfile.prod
-    image: descripciones-imagenes-ms
+    image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/descripciones-imagenes-ms
     environment:
       - PORT=3002
       - NATS_SERVERS=nats://nats-server:4222
@@ -48,7 +48,7 @@ services:
     build:
       context: ./alertas-reportes-ms
       dockerfile: dockerfile.prod
-    image: alertas-reportes-ms
+    image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/alertas-reportes-ms
     environment:
       - PORT=3003
       - NATS_SERVERS=nats://nats-server:4222
