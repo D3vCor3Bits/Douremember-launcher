@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: usuarios-autenticacion-ms
+  name: usuarios-autenticacion-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usuarios-autenticacion-ms
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: usuarios-autenticacion-ms
+    spec:
+      containers:
+      - image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/usuarios-autenticacion-ms
+        name: usuarios-autenticacion-ms
+        env:
+        - name: PORT
+          value: "3001"
+        - name: NATS_SERVERS
+          value: "nats://nats"
+        - name: SUPABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: usuarios-autenticacion-secrets
+              key: supabase_url
+        - name: SUPABASE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: usuarios-autenticacion-secrets
+              key: supabase_key
+        resources: {}
+status: {}

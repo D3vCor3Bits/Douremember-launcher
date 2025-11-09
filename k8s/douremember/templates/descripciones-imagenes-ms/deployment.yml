@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: descripciones-imagenes-ms
+  name: descripciones-imagenes-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: descripciones-imagenes-ms
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: descripciones-imagenes-ms
+    spec:
+      containers:
+      - image: us-east4-docker.pkg.dev/douremember-477701/douremember-registry/descripciones-imagenes-ms
+        name: descripciones-imagenes-ms
+        env:
+        - name: PORT
+          value: "3002"
+        - name: NATS_SERVERS
+          value: "nats://nats"
+        - name: CLOUDINARY_NAME
+          valueFrom:
+            secretKeyRef:
+              name: descripciones-imagenes-secrets
+              key: cloudinary_name
+        - name: CLOUDINARY_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: descripciones-imagenes-secrets
+              key: cloudinary_api_key
+        - name: CLOUDINARY_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: descripciones-imagenes-secrets
+              key: cloudinary_api_secret
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: descripciones-imagenes-secrets
+              key: gemini_api_key
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: descripciones-imagenes-secrets
+              key: database_url
+        resources: {}
+status: {}
