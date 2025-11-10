@@ -1,0 +1,12 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: backend-config-descripciones
+spec:
+  # Timeout para endpoints que usan IA
+  # Máximo: 86400s (24 horas)
+  # Recomendado: 300s (5 minutos) para IA
+  timeoutSec: 300
+  # Tamaño máximo de conexión
+  connectionDraining:
+    drainingTimeoutSec: 60

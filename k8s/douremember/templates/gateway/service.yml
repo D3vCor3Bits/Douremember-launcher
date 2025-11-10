@@ -5,6 +5,9 @@ metadata:
   labels:
     app: gateway
   name: gateway
+  annotations:
+    # Configuración de timeout para Google Cloud Load Balancer
+    cloud.google.com/backend-config: '{"default": "backend-config-descripciones"}'
 spec:
   ports:
   - name: "3000"
