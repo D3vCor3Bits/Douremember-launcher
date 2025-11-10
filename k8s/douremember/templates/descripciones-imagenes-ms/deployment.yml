@@ -50,5 +50,11 @@ spec:
             secretKeyRef:
               name: descripciones-imagenes-secrets
               key: database_url
-        resources: {}
+        resources:
+          requests:
+            cpu: "150m"
+            memory: "384Mi"
+          limits:
+            cpu: "400m"
+            memory: "768Mi"
 status: {}

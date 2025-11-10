@@ -35,5 +35,11 @@ spec:
             secretKeyRef:
               name: usuarios-autenticacion-secrets
               key: supabase_key
-        resources: {}
+        resources:
+          requests:
+            cpu: "150m"
+            memory: "384Mi"
+          limits:
+            cpu: "400m"
+            memory: "768Mi"
 status: {}

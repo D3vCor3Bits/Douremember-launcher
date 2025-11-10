@@ -40,6 +40,11 @@ spec:
             secretKeyRef:
               name: alertas-reportes-secrets
               key: email_from_address
-
-        resources: {}
+        resources:
+          requests:
+            cpu: "150m"
+            memory: "384Mi"
+          limits:
+            cpu: "400m"
+            memory: "768Mi"
 status: {}
