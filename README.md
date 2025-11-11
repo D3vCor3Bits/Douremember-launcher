@@ -122,20 +122,14 @@ git push
    git submodule update --init --recursive
    ```
 
-2. Crea el archivo `.env` basado en `.env.template`
+2. **Importante:** Crea el archivo `.env` en la raíz del proyecto basado en `.env.template`
+   
+   Este archivo es **esencial** para que Docker Compose funcione correctamente, ya que contiene todas las variables de entorno necesarias para los microservicios.
 
 3. Levanta todos los servicios con Docker Compose:
    ```bash
    docker compose up --build
    ```
-
-### Servidor NATS
-
-El sistema requiere un servidor NATS para la comunicación entre microservicios. Si desarrollas sin Docker Compose, levanta NATS manualmente:
-
-```bash
-docker run -d --name nats-main -p 4222:4222 -p 8222:8222 nats
-```
 
 ### Acceso a los Servicios
 
