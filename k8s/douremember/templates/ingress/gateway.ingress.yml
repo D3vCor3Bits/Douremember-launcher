@@ -8,6 +8,10 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     # Timeout del backend (máximo 86400s = 24 horas)
     cloud.google.com/backend-config: "backend-config-descripciones"
+    # SSL Certificate administrado por Google
+    networking.gke.io/managed-certificates: "douremember-ssl-cert"
+    # Redirigir HTTP a HTTPS
+    kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
     - http:
